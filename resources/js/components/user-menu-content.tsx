@@ -1,5 +1,5 @@
 import { Link, router } from '@inertiajs/react';
-import { LogOut, Settings } from 'lucide-react';
+import { LogOut, Settings, Eye } from 'lucide-react';
 import {
     DropdownMenuGroup,
     DropdownMenuItem,
@@ -11,6 +11,7 @@ import { useMobileNavigation } from '@/hooks/use-mobile-navigation';
 import { logout } from '@/routes';
 import { edit } from '@/routes/profile';
 import type { User } from '@/types';
+import AppearanceToggleTab from './appearance-tabs';
 
 type Props = {
     user: User;
@@ -43,6 +44,13 @@ export function UserMenuContent({ user }: Props) {
                         <Settings className="mr-2" />
                         Settings
                     </Link>
+                </DropdownMenuItem>
+            </DropdownMenuGroup>
+            <DropdownMenuSeparator />
+            <DropdownMenuGroup>
+                <DropdownMenuItem>
+                    <Eye className="mr-2" />
+                    <AppearanceToggleTab />
                 </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />

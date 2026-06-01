@@ -1,5 +1,5 @@
 import { Link, usePage } from '@inertiajs/react';
-import { BookOpen, FolderGit2, LayoutGrid } from 'lucide-react';
+import { BookOpen, Cog, FolderGit2 } from 'lucide-react';
 import AppLogo from '@/components/app-logo';
 import { NavFooter } from '@/components/nav-footer';
 import { NavMain } from '@/components/nav-main';
@@ -17,19 +17,13 @@ import {
 import { dashboard } from '@/routes';
 import type { NavItem } from '@/types';
 
-export function AppSidebar() {
+export function AppSidebar({ mainNavItems }: { mainNavItems: NavItem[] }) {
     const page = usePage();
     const dashboardUrl = page.props.currentGroup
         ? dashboard(page.props.currentGroup.slug)
         : '/';
 
-    const mainNavItems: NavItem[] = [
-        {
-            title: 'Dashboard',
-            href: dashboardUrl,
-            icon: LayoutGrid,
-        },
-    ];
+    const isAdmin = page.props.auth?.isAdmin && page.url.startsWith('/admin');
 
     const footerNavItems: NavItem[] = [
         {
@@ -51,26 +45,29 @@ export function AppSidebar() {
                     <SidebarMenuItem>
                         <SidebarMenuButton size="lg" asChild>
                             <Link href={dashboardUrl} prefetch>
-                                <AppLogo />
+                                <AppLogo isAdmin={isAdmin} />
                             </Link>
                         </SidebarMenuButton>
                     </SidebarMenuItem>
                 </SidebarMenu>
-                <SidebarMenu>
-                    <SidebarMenuItem>
-                        <GroupSwitcher />
-                    </SidebarMenuItem>
-                </SidebarMenu>
+                {!isAdmin && (
+                    <SidebarMenu>
+                        <SidebarMenuItem>
+                            <GroupSwitcher />
+                        </SidebarMenuItem>
+                    </SidebarMenu>
+                )}
             </SidebarHeader>
 
             <SidebarContent>
-                <NavMain items={mainNavItems} />
+                <NavMain items={mainNavItems} isAdmin={page.props.auth?.isAdmin && !page.url.startsWith('/admin')} />
             </SidebarContent>
-
-            <SidebarFooter>
-                <NavFooter items={footerNavItems} className="mt-auto" />
-                <NavUser />
-            </SidebarFooter>
+            {!isAdmin && (
+                <SidebarFooter>
+                    <NavFooter items={footerNavItems} className="mt-auto" />
+                    <NavUser />
+                </SidebarFooter>
+            )}
         </Sidebar>
     );
 }

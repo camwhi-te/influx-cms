@@ -15,9 +15,10 @@ import AppearanceToggleTab from './appearance-tabs';
 
 type Props = {
     user: User;
+    isAdmin?: boolean;
 };
 
-export function UserMenuContent({ user }: Props) {
+export function UserMenuContent({ user, isAdmin = false }: Props) {
     const cleanup = useMobileNavigation();
 
     const handleLogout = () => {
@@ -29,7 +30,7 @@ export function UserMenuContent({ user }: Props) {
         <>
             <DropdownMenuLabel className="p-0 font-normal">
                 <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
-                    <UserInfo user={user} showEmail={true} />
+                    <UserInfo user={user} showEmail={true} isAdmin={isAdmin} />
                 </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />

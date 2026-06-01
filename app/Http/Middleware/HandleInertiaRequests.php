@@ -42,6 +42,8 @@ class HandleInertiaRequests extends Middleware
             'name' => config('app.name'),
             'auth' => [
                 'user' => $user,
+                'isAdmin' => $user?->isAdmin() ?? false,
+                'permissions' => $user?->adminRole?->getGrantedPermissions() ?? [],
             ],
             'sidebarOpen' => ! $request->hasCookie('sidebar_state') || $request->cookie('sidebar_state') === 'true',
             'currentGroup' => fn () => $user?->currentGroup ? $user->toUserGroup($user->currentGroup) : null,

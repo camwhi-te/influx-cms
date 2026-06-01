@@ -5,10 +5,12 @@ import type { Group, User } from '@/types';
 export function UserInfo({
     user,
     showEmail = false,
+    isAdmin = false,
     group = null,
 }: {
     user: User;
     showEmail?: boolean;
+    isAdmin?: boolean;
     group?: Group | null;
 }) {
     const getInitials = useInitials();
@@ -34,6 +36,11 @@ export function UserInfo({
                 {!group && showEmail ? (
                     <span className="truncate text-xs text-muted-foreground">
                         {user.email}
+                    </span>
+                ) : null}
+                {isAdmin ? (
+                    <span className="truncate text-xs font-semibold text-emerald-500">
+                        Administrator
                     </span>
                 ) : null}
             </div>

@@ -141,3 +141,27 @@
         @apply bg-background text-foreground;
     }
 }
+
+/* Admin scope: nudge core variables slightly to visually separate admin UI
+   Uses small color mixes so the change is subtle and respects light/dark modes */
+.admin-scope.admin-light {
+    /* stronger light-mode tweak so admin UI is visually distinct */
+    --background: color-mix(in oklch, var(--background) 88%, oklch(1 0 0) 12%);
+    --card: color-mix(in oklch, var(--card) 88%, oklch(1 0 0) 12%);
+    --muted: color-mix(in oklch, var(--muted) 80%, oklch(1 0 0) 20%);
+    --sidebar: color-mix(in oklch, var(--sidebar) 90%, oklch(1 0 0) 10%);
+    --sidebar-accent: color-mix(in oklch, var(--sidebar-accent) 90%, oklch(0.6 0.12 260) 10%);
+}
+
+.admin-scope.admin-dark {
+    /* stronger dark-mode tweak to subtly deepen admin surfaces */
+    --background: color-mix(in oklch, var(--background) 88%, oklch(0 0 0) 12%);
+    --card: color-mix(in oklch, var(--card) 88%, oklch(0 0 0) 12%);
+    --muted: color-mix(in oklch, var(--muted) 80%, oklch(0 0 0) 20%);
+    --sidebar: color-mix(in oklch, var(--sidebar) 90%, oklch(0 0 0) 10%);
+    --sidebar-accent: color-mix(in oklch, var(--sidebar-accent) 90%, oklch(0.6 0.12 260) 10%);
+}
+/* Visible admin indicator (left stripe + subtle inset) so admin pages are distinct
+
+   even if CSS color-mix isn't applied or supported by the browser/tooling. */
+

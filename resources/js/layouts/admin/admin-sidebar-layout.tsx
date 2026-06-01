@@ -2,27 +2,25 @@ import { AppContent } from '@/components/app-content';
 import { AppShell } from '@/components/app-shell';
 import { AppSidebar } from '@/components/app-sidebar';
 import { AppSidebarHeader } from '@/components/app-sidebar-header';
-import { dashboard } from '@/routes';
 import type { AppLayoutProps, NavItem } from '@/types';
-import { usePage } from '@inertiajs/react';
-import { LayoutGrid } from 'lucide-react';
+import { ChartBar, ShieldCheck } from 'lucide-react';
 
-export default function AppSidebarLayout({
+/**
+ * Admin Sidebar Layout
+ * 
+ * Similar to the standard app layout but intended for administrative pages.
+ * Can be customized with admin-specific components and styles.
+ */
+
+export default function AdminSidebarLayout({
     children,
     breadcrumbs = [],
 }: AppLayoutProps) {
-    const page = usePage();
-
-    const dashboardUrl = page.props.currentGroup
-        ? dashboard(page.props.currentGroup.slug)
-        : '/';
-
     const items: NavItem[] = [
-
         {
-            title: 'Dashboard',
-            href: dashboardUrl,
-            icon: LayoutGrid,
+            title: 'Overview',
+            href: '/admin',
+            icon: ChartBar,
         },
     ];
 

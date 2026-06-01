@@ -8,13 +8,13 @@ import {
 } from '@/components/ui/sidebar';
 import { useCurrentUrl } from '@/hooks/use-current-url';
 import type { NavItem } from '@/types';
+import { Cog } from 'lucide-react';
 
-export function NavMain({ items = [] }: { items: NavItem[] }) {
+export function NavMain({ items = [], isAdmin = false }: { items: NavItem[]; isAdmin: boolean }) {
     const { isCurrentUrl } = useCurrentUrl();
 
     return (
         <SidebarGroup className="px-2 py-0">
-            <SidebarGroupLabel>Platform</SidebarGroupLabel>
             <SidebarMenu>
                 {items.map((item) => (
                     <SidebarMenuItem key={item.title}>
@@ -30,6 +30,19 @@ export function NavMain({ items = [] }: { items: NavItem[] }) {
                         </SidebarMenuButton>
                     </SidebarMenuItem>
                 ))}
+                {isAdmin && (
+                    <SidebarMenuItem>
+                        <SidebarMenuButton
+                            asChild
+                            tooltip={{ children: 'Admin' }}
+                        >
+                            <Link href={'/admin'} prefetch>
+                                <Cog />
+                                <span>Admin Settings</span>
+                            </Link>
+                        </SidebarMenuButton>
+                    </SidebarMenuItem>
+                )}
             </SidebarMenu>
         </SidebarGroup>
     );

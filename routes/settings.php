@@ -2,10 +2,10 @@
 
 use App\Http\Controllers\Settings\ProfileController;
 use App\Http\Controllers\Settings\SecurityController;
-use App\Http\Controllers\Teams\TeamController;
-use App\Http\Controllers\Teams\TeamInvitationController;
-use App\Http\Controllers\Teams\TeamMemberController;
-use App\Http\Middleware\EnsureTeamMembership;
+use App\Http\Controllers\Groups\GroupController;
+use App\Http\Controllers\Groups\GroupInvitationController;
+use App\Http\Controllers\Groups\GroupMemberController;
+use App\Http\Middleware\EnsureGroupMembership;
 use Illuminate\Auth\Middleware\RequirePassword;
 use Illuminate\Support\Facades\Route;
 
@@ -29,19 +29,19 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::inertia('settings/appearance', 'settings/appearance')->name('appearance.edit');
 
-    Route::get('settings/teams', [TeamController::class, 'index'])->name('teams.index');
-    Route::post('settings/teams', [TeamController::class, 'store'])->name('teams.store');
+    Route::get('settings/groups', [GroupController::class, 'index'])->name('groups.index');
+    Route::post('settings/groups', [GroupController::class, 'store'])->name('groups.store');
 
-    Route::middleware(EnsureTeamMembership::class)->group(function () {
-        Route::get('settings/teams/{team}', [TeamController::class, 'edit'])->name('teams.edit');
-        Route::patch('settings/teams/{team}', [TeamController::class, 'update'])->name('teams.update');
-        Route::delete('settings/teams/{team}', [TeamController::class, 'destroy'])->name('teams.destroy');
-        Route::post('settings/teams/{team}/switch', [TeamController::class, 'switch'])->name('teams.switch');
+    Route::middleware(EnsureGroupMembership::class)->group(function () {
+        Route::get('settings/groups/{group}', [GroupController::class, 'edit'])->name('groups.edit');
+        Route::patch('settings/groups/{group}', [GroupController::class, 'update'])->name('groups.update');
+        Route::delete('settings/groups/{group}', [GroupController::class, 'destroy'])->name('groups.destroy');
+        Route::post('settings/groups/{group}/switch', [GroupController::class, 'switch'])->name('groups.switch');
 
-        Route::patch('settings/teams/{team}/members/{user}', [TeamMemberController::class, 'update'])->name('teams.members.update');
-        Route::delete('settings/teams/{team}/members/{user}', [TeamMemberController::class, 'destroy'])->name('teams.members.destroy');
+        Route::patch('settings/groups/{group}/members/{user}', [GroupMemberController::class, 'update'])->name('groups.members.update');
+        Route::delete('settings/groups/{group}/members/{user}', [GroupMemberController::class, 'destroy'])->name('groups.members.destroy');
 
-        Route::post('settings/teams/{team}/invitations', [TeamInvitationController::class, 'store'])->name('teams.invitations.store');
-        Route::delete('settings/teams/{team}/invitations/{invitation}', [TeamInvitationController::class, 'destroy'])->name('teams.invitations.destroy');
+        Route::post('settings/groups/{group}/invitations', [GroupInvitationController::class, 'store'])->name('groups.invitations.store');
+        Route::delete('settings/groups/{group}/invitations/{invitation}', [GroupInvitationController::class, 'destroy'])->name('groups.invitations.destroy');
     });
 });

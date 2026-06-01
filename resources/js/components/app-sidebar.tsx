@@ -4,7 +4,7 @@ import AppLogo from '@/components/app-logo';
 import { NavFooter } from '@/components/nav-footer';
 import { NavMain } from '@/components/nav-main';
 import { NavUser } from '@/components/nav-user';
-import { TeamSwitcher } from '@/components/team-switcher';
+import { GroupSwitcher } from '@/components/group-switcher';
 import {
     Sidebar,
     SidebarContent,
@@ -19,8 +19,8 @@ import type { NavItem } from '@/types';
 
 export function AppSidebar() {
     const page = usePage();
-    const dashboardUrl = page.props.currentTeam
-        ? dashboard(page.props.currentTeam.slug)
+    const dashboardUrl = page.props.currentGroup
+        ? dashboard(page.props.currentGroup.slug)
         : '/';
 
     const mainNavItems: NavItem[] = [
@@ -58,7 +58,7 @@ export function AppSidebar() {
                 </SidebarMenu>
                 <SidebarMenu>
                     <SidebarMenuItem>
-                        <TeamSwitcher />
+                        <GroupSwitcher />
                     </SidebarMenuItem>
                 </SidebarMenu>
             </SidebarHeader>

@@ -1,15 +1,15 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { useInitials } from '@/hooks/use-initials';
-import type { Team, User } from '@/types';
+import type { Group, User } from '@/types';
 
 export function UserInfo({
     user,
     showEmail = false,
-    team = null,
+    group = null,
 }: {
     user: User;
     showEmail?: boolean;
-    team?: Team | null;
+    group?: Group | null;
 }) {
     const getInitials = useInitials();
     const showAvatar = Boolean(user.avatar && user.avatar !== '');
@@ -26,12 +26,12 @@ export function UserInfo({
             </Avatar>
             <div className="grid flex-1 text-left text-sm leading-tight">
                 <span className="truncate font-medium">{user.name}</span>
-                {team ? (
+                {group ? (
                     <span className="truncate text-xs text-muted-foreground">
-                        {team.name}
+                        {group.name}
                     </span>
                 ) : null}
-                {!team && showEmail ? (
+                {!group && showEmail ? (
                     <span className="truncate text-xs text-muted-foreground">
                         {user.email}
                     </span>

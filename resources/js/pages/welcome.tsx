@@ -4,8 +4,8 @@ import AppLogo from '@/components/app-logo';
 import { register } from '@/routes';
 
 export default function Welcome() {
-    const { auth, currentTeam } = usePage().props;
-    const dashboardUrl = currentTeam ? dashboard(currentTeam.slug) : '/';
+    const { auth, currentGroup } = usePage().props;
+    const dashboardUrl = currentGroup ? dashboard(currentGroup.slug) : '/';
 
     return (
         <>
@@ -98,7 +98,7 @@ export default function Welcome() {
                                 <div className="rounded-[1.75rem] border border-[#e7e7ff] bg-white p-5 shadow-sm dark:border-[#272a34] dark:bg-[#141519]">
                                     <p className="text-sm font-semibold text-[#1b1b18] dark:text-white">Unified dashboard</p>
                                     <p className="mt-2 text-sm leading-6 text-[#5b5d69] dark:text-[#b8b9c4]">
-                                        Monitor services, scale containers, and manage teams from one control plane.
+                                        Monitor services, scale containers, and manage groups from one control plane.
                                     </p>
                                 </div>
                             </div>
@@ -135,7 +135,7 @@ export default function Welcome() {
                                         <p className="text-sm font-semibold text-[#1b1b18] dark:text-white">Quick actions</p>
                                         <div className="mt-3 grid gap-2 text-sm text-[#5b5d69] dark:text-[#b8b9c4]">
                                             <span>• Scale containers</span>
-                                            <span>• Manage teams</span>
+                                            <span>• Manage groups</span>
                                             <span>• Track spend</span>
                                         </div>
                                     </div>
@@ -156,7 +156,7 @@ export default function Welcome() {
                         </div>
                         <div className="rounded-[2rem] border border-[#e7e7ff] bg-white p-8 shadow-sm dark:border-[#23272f] dark:bg-[#111316]">
                             <h2 className="text-xl font-semibold text-[#12131a] dark:text-white">Pay-as-you-go billing</h2>
-                            <p className="mt-3 text-sm leading-6 text-[#5b5d69] dark:text-[#b8b9c4]">Only pay for active containers, network usage, and storage with daily cost visibility and team spend controls.</p>
+                            <p className="mt-3 text-sm leading-6 text-[#5b5d69] dark:text-[#b8b9c4]">Only pay for active containers, network usage, and storage with daily cost visibility and group spend controls.</p>
                             <ul className="mt-6 space-y-4 text-sm text-[#5b5d69] dark:text-[#b8b9c4]">
                                 <li>• Auto-scaling cost controls</li>
                                 <li>• Usage insights per container</li>
@@ -177,8 +177,8 @@ export default function Welcome() {
                     <section className="rounded-[2rem] border border-[#e9ebf4] bg-white p-8 shadow-[0_30px_60px_-35px_rgba(41,58,97,0.12)] dark:border-[#24272d] dark:bg-[#101214]">
                         <div className="grid gap-8 lg:grid-cols-2">
                             <div>
-                                <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[#4e5acd] dark:text-[#9d9fff]">Trusted by container-first teams</p>
-                                <h2 className="mt-4 text-3xl font-semibold text-[#12131a] dark:text-white">A modern operations experience for every team.</h2>
+                                <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[#4e5acd] dark:text-[#9d9fff]">Trusted by container-first groups</p>
+                                <h2 className="mt-4 text-3xl font-semibold text-[#12131a] dark:text-white">A modern operations experience for every group.</h2>
                                 <p className="mt-5 text-sm leading-7 text-[#5b5d69] dark:text-[#b8b9c4]">Securely manage service lifecycles, deploy updates automatically, and keep budgets under control with a platform built for distributed apps and microservices.</p>
                                 <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                                     <Link
@@ -223,7 +223,7 @@ export default function Welcome() {
 
                     <footer className="border-t border-[#e6e8f0] py-6 text-sm text-[#5b5d69] dark:border-[#23272f] dark:text-[#9b9da7]">
                         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                            <p>© 2026 Influx. Container hosting for teams and modern services.</p>
+                            <p>© 2026 Influx. Container hosting for groups and modern services.</p>
                             <p>Secure deployment, usage-based billing, and one dashboard.</p>
                         </div>
                     </footer>

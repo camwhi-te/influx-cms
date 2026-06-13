@@ -17,12 +17,11 @@ class UserController extends Controller
 {
     /**
      * List all users.
-     * Requires: user:view permission
      */
     public function index(AdminRequest $request): JsonResponse
     {
         // Check permission
-        $request->permission('user:view');
+        $request->permission('user:r');
 
         $users = User::paginate(15);
 
@@ -31,24 +30,22 @@ class UserController extends Controller
 
     /**
      * Get a specific user.
-     * Requires: user:view permission
      */
     public function show(AdminRequest $request, User $user): JsonResponse
     {
         // Check permission
-        $request->permission('user:view');
+        $request->permission('user:r');
 
         return response()->json($user);
     }
 
     /**
      * Create a new user.
-     * Requires: user:create permission
      */
     public function store(AdminRequest $request): JsonResponse
     {
         // Check permission
-        $request->permission('user:create');
+        $request->permission('user:c');
 
         // Validate input
         $validated = $request->validate([
@@ -69,12 +66,11 @@ class UserController extends Controller
 
     /**
      * Update a user.
-     * Requires: user:update permission
      */
     public function update(AdminRequest $request, User $user): JsonResponse
     {
         // Check permission
-        $request->permission('user:update');
+        $request->permission('user:u');
 
         // Validate input
         $validated = $request->validate([
@@ -95,12 +91,11 @@ class UserController extends Controller
 
     /**
      * Delete a user.
-     * Requires: user:delete permission
      */
     public function destroy(AdminRequest $request, User $user): JsonResponse
     {
         // Check permission
-        $request->permission('user:delete');
+        $request->permission('user:d');
 
         $user->delete();
 

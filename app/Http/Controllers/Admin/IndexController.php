@@ -19,7 +19,7 @@ class IndexController extends Controller
      */
     public function index(AdminRequest $request): Response
     {
-        $request->permission('overview:index');
+        $request->permission('overview:r');
 
         return inertia('admin/overview/index');
     }

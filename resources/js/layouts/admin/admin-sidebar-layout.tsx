@@ -3,7 +3,7 @@ import { AppShell } from '@/components/app-shell';
 import { AppSidebar } from '@/components/app-sidebar';
 import { AppSidebarHeader } from '@/components/app-sidebar-header';
 import type { AppLayoutProps, NavItem } from '@/types';
-import { ChartBar, ShieldCheck } from 'lucide-react';
+import { ChartBar, Users } from 'lucide-react';
 
 /**
  * Admin Sidebar Layout
@@ -21,6 +21,13 @@ export default function AdminSidebarLayout({
             title: 'Overview',
             href: '/admin',
             icon: ChartBar,
+            hasPermission: 'overview:r',
+        },
+        {
+            title: 'Users',
+            href: '/users',
+            icon: Users,
+            hasPermission: 'user:r',
         },
     ];
 

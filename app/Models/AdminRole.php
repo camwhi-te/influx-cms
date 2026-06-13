@@ -33,21 +33,12 @@ class AdminRole extends Model
     public static function availablePermissions(): array
     {
         return [
-            'overview:index',
+            'overview:r',
 
-            // User permissions
-            'user:view',
-            'user:create',
-            'user:update',
-            'user:delete',
-
-            // Group permissions (if applicable)
-            'group:view',
-            'group:create',
-            'group:update',
-            'group:delete',
-
-            // Add more as needed
+            'user:c',
+            'user:r',
+            'user:u',
+            'user:d',
         ];
     }
 
